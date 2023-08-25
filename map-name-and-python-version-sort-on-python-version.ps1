@@ -19,6 +19,8 @@ End{
 			'name' = $webApp.name
 			'pythonVersion' = $webApp.siteConfigFull.pythonVersion
 			'linuxFxVersion' = $webApp.siteConfigFull.linuxFxVersion
+			'runtime' = $webApp.moreConfigs.properties.CURRENT_STACK
+			'scmType' = $webApp.siteConfigFull.scmType
 		}
 		$output += ,$mapObj
 	}

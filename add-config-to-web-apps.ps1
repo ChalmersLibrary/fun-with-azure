@@ -26,9 +26,13 @@ End{
 			'WEBSITE_NODE_DEFAULT_VERSION' = $appSettingNodeDefaultVersion.value
 		}
 		$webApp | Add-Member -NotePropertyName someAppSettings -NotePropertyValue $appSettingsLimited
+		
+        $uri = "https://management.azure.com/subscriptions/$($webApp.subscription.id)/resourceGroups/$($webApp.resourceGroup)/providers/Microsoft.Web/sites/$($webApp.name)/config/metadata/list?api-version=2022-09-01"
+        $moreConfigs = az rest --method post --uri $uri | ConvertFrom-Json
+		$webApp | Add-Member -NotePropertyName moreConfigs -NotePropertyValue $moreConfigs
 	
 		$webApps += ,$webApp
 	}
 
-	Write-Output (ConvertTo-Json $webApps)
+	Write-Output (ConvertTo-Json -Depth 10 $webApps)
 }

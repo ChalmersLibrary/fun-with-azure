@@ -20,6 +20,8 @@ End{
 			'websiteNodeDefaultVersion' = $webApp.someAppSettings.WEBSITE_NODE_DEFAULT_VERSION
 			'nodeVersion' = $webApp.siteConfigFull.nodeVersion
 			'linuxFxVersion' = $webApp.siteConfigFull.linuxFxVersion
+			'runtime' = $webApp.moreConfigs.properties.CURRENT_STACK
+			'scmType' = $webApp.siteConfigFull.scmType
 		}
 		$output += ,$mapObj
 	}
